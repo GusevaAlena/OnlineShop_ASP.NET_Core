@@ -1,0 +1,80 @@
+﻿@using OnlineShopWebApp.ViewModels
+@model OrderCreateViewModel
+
+<div class="row">
+    <div class="col">
+        <h3 class="page-title my-sm-4">Оформление заказа</h3>
+        <p class="my-sm-4">Для оформления заказа необходимо заполнить ваши данные в форме ниже.</p>
+        <form method="post">
+            <div class="validation" asp-validation-summary="None"></div>
+            <div class="row">
+                <legend class="mx-sm-4">Личные данные</legend>
+                <div class="col-4">
+                    <input asp-for="User.Name" type="text" class="form-control" placeholder="Имя">
+                    <span class="alert-danger" asp-validation-for="User.Name"></span>
+                </div>
+                <div class="col-5">
+                    <input asp-for="User.Surname" type="text" class="form-control" placeholder="Фамилия">
+                    <span class="alert-danger" asp-validation-for="User.Surname"></span>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-4">
+                    <input asp-for="User.PhoneNumber" type="tel" class="form-control" placeholder="Контактный телефон">
+                    <span class="alert-danger" asp-validation-for="User.PhoneNumber"></span>
+                </div>
+                <div class="col-5">
+                    <input asp-for="User.Email" type="email" class="form-control" placeholder="e-mail" readonly>
+                    <span class="alert-danger" asp-validation-for="User.Email"></span>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <legend class="mx-sm-4">Адрес доставки</legend>
+                <div class="col-3">
+                    <input asp-for="Address.City" type="text" class="form-control" placeholder="Город">
+                    <span class="alert-danger" asp-validation-for="Address.City"></span>
+                </div>
+                <div class="col-3">
+                    <input asp-for="Address.Street" type="text" class="form-control" placeholder="Улица">
+                    <span class="alert-danger" asp-validation-for="Address.Street"></span>
+                </div>
+                <div class="col-3">
+                    <input asp-for="Address.HouseNumber" type="text" class="form-control" placeholder="Дом, корпус, строение">
+                    <span class="alert-danger" asp-validation-for="Address.HouseNumber"></span>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-2">
+                    <input asp-for="Address.EntranceNumber" type="number" class="form-control" placeholder="Парадная">
+                    <span class="alert-danger" asp-validation-for="Address.EntranceNumber"></span>
+                </div>
+                <div class="col-2">
+                    <input asp-for="Address.Floor" type="number" class="form-control" placeholder="Этаж">
+                    <span class="alert-danger" asp-validation-for="Address.Floor"></span>
+                </div>
+                <div class="col-2">
+                    <input asp-for="Address.FlatNumber" type="number" class="form-control" placeholder="Квартира">
+                    <span class="alert-danger" asp-validation-for="Address.FlatNumber"></span>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <legend class="mx-sm-4">Способ оплаты</legend>
+                <div class="col-9">
+                    <select class="form-control" asp-for="Payment.Id" asp-items="@Model.PaymentMethodSelectList">
+                        <option>Выберете способ оплаты</option>
+                    </select>
+                    <span class="alert-danger" asp-validation-for="Payment.Id"></span>
+                </div>
+            </div>
+            <div class="text-center my-sm-4">
+                <input type="submit" class="btn btn-outline-success" asp-controller="Order" asp-action="Create" value="Заказать" />
+            </div>
+        </form>
+    </div>
+</div>
+
+

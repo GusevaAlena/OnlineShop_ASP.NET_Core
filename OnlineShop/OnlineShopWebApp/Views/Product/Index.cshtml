@@ -1,0 +1,26 @@
+﻿@using OnlineShopWebApp.ViewModels
+@model ProductViewModel
+<div class="card mb-3">
+    <div class="row">
+        <div class="col-sm-4">
+            <img class="card-img-top" src="@Model.ImagePath" />
+        </div>
+        <div class="col-sm-8">
+            <div class="card-body">
+                <h4 class="card-title">@Model.Name</h4>
+                <h5 class="product-price"> Стоимость: @Model.Price руб</h5>
+                <h6 class="card-text">Описание товара: @Model.Description</h6><br />
+                <div class="btn-group my-sm-4">
+                    <a asp-controller="Cart" asp-action="AddProduct" asp-route-productId="@Model.Id" class="btn btn-outline-success me-md-2" type="button">
+                        <i class="bi bi-cart-plus"></i> В корзину
+                    </a>
+                    <a asp-controller="Product" asp-action="CompareAdd" asp-route-id="@Model.Id"  class="btn btn-outline-info"><i class="bi bi-arrow-left-right"></i> К сравнению</a>
+                    <a asp-controller="Product" asp-action="FavoriteAdd" asp-route-id="@Model.Id"  class="btn btn-outline-danger"><i class="bi bi-heart"></i> В избранное</a>
+                </div>
+                <div class="d-flex justify-content-start">
+                    <a asp-area="" asp-controller="Home" class="btn btn-outline-info" type="button">Продолжить покупки</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

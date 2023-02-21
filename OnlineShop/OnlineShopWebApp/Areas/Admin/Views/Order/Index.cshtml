@@ -1,0 +1,42 @@
+﻿@using OnlineShopWebApp.ViewModels
+@model List<OrderViewModel>
+<div class="row">
+    <div class="col-3 my-sm-5">
+        @await Html.PartialAsync("SidebarMenu")
+    </div>
+    <div class="col-9 text-center">
+        <h3 class="card-title">Список заказов</h3>
+        @if (Model.Count != 0)
+        {
+            <table class="table table-info table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">№</th>
+                        <th scope="col">Сумма</th>
+                        <th scope="col">Статус</th>
+                        <th scope="col">Пользователь(логин)</th>
+                        <th scope="col">Дата</th>
+                        <th scope="col">Время</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var order in Model)
+                    {
+                        <tr>
+                            <td>@order.Id</td>
+                            <td>@order.Cart.TotalPrice</td>
+                            <td>@order.Status.Name</td>
+                            <td>@order.Cart.User.Email</td>
+                            <td>@order.CreationDateTime.ToString("d")</td>
+                            <td>@order.CreationDateTime.ToString("t")</td>
+                            <td>
+                                <a asp-area="Admin" asp-controller="Order" asp-action="Details" asp-route-orderId="@order.Id">Подробнее</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>

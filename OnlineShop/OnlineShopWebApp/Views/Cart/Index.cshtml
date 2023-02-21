@@ -1,0 +1,53 @@
+﻿@using OnlineShopWebApp.ViewModels
+@model CartViewModel
+
+<div class="row">
+    <div class="col-sm-12">
+        <h3 class="page-title my-sm-4">Корзина</h3>
+        <table class="table table-info table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Название позиции</th>
+                    <th scope="col">Количество товара в позиции</th>
+                    <th scope="col">Стоимость позиции</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var position in Model.Positions)
+                {
+                    <tr>
+                        <td>@position.Product.Name</td>
+                        <td>
+                            <div class="count-buttons">
+                                <div class="text-center">
+                                    <a asp-controller="Cart" asp-action="DecreaseQuantity" asp-route-productId="@position.Product.Id" asp-route-userId="@Model.User.Id"><i class="bi bi-dash-circle"></i></a>
+                                    @position.Quantity
+                                    @if (position.Quantity < position.Product.TotalQuantity)
+                                    {
+                                        <a asp-controller="Cart" asp-action="IncreaseQuantity" asp-route-productId="@position.Product.Id" asp-route-userId="@Model.User.Id"><i class="bi bi-plus-circle"></i></a>
+                                    }
+                                    else
+                                    {
+                                        <a class="disabled"><i class="bi bi-plus-circle"></i></a>
+                                    }
+                                </div>
+                            </div>
+                        </td>
+                        <td>@position.Product.Price &#8381;</td>
+                    </tr>
+                }
+                <tr>
+                    <td colspan="2" class="total-price">Общая сумма заказа:</td>
+                    <td class="total-price">@Model.TotalPrice &#8381;</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="text-right my-sm-4">
+            <a class="btn btn-outline-danger" asp-controller="Cart" asp-action="Clear" asp-route-userId="@Model.User.Id" type="button">Очистить корзину</a>
+        </div>
+        <div class="text-center my-sm-4">
+            <a asp-controller="Home" class="btn btn-outline-info justify-content-start" type="button">Продолжить покупки</a>
+            <a class="btn btn-outline-success" asp-controller="Order" asp-action="Create" asp-route-userId="@Model.User.Id" type="button">Оформить заказ</a>
+        </div>
+    </div>
+</div>

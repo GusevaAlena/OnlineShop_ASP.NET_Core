@@ -1,0 +1,24 @@
+﻿@using OnlineShopWebApp.ViewModels
+@model UserViewModel
+
+<div class="row">
+    <div class="col-3 my-sm-5">
+        @await Html.PartialAsync("SidebarMenu")
+    </div>
+    <div class="col-sm-9 text-center">
+        <h3 class="card-title">Редактирование пользователя</h3>        
+        <form method="post">
+            <input type="hidden" asp-for="Id" />
+            <div class="validation" asp-validation-summary="ModelOnly"></div>
+            <input asp-for="Name" type="text" class="form-control" placeholder="Имя" />
+            <span class="alert-danger" asp-validation-for="Name"></span><br />
+            <input asp-for="Surname" type="text" class="form-control" placeholder="Фамилия" />
+            <span class="alert-danger" asp-validation-for="Surname"></span><br />
+            <input asp-for="Email" type="email" class="form-control" placeholder="E-mail(Логин)" />
+            <span class="alert-danger" asp-validation-for="Email"></span><br />
+            <input asp-for="PhoneNumber" type="tel" class="form-control" placeholder="Телефон" />
+            <span class="alert-danger" asp-validation-for="PhoneNumber"></span><br />
+            <button asp-area="Admin" asp-controller="User" asp-action="Edit" class="btn btn-outline-success my-sm-5" type="submit">Сохранить</button>
+        </form>
+    </div>
+</div>

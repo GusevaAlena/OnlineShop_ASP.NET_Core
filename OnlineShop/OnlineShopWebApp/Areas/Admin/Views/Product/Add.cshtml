@@ -1,0 +1,25 @@
+﻿@model ProductViewModel
+<div class="row">
+    <div class="col-3 my-sm-5">
+        @await Html.PartialAsync("SidebarMenu")
+    </div>
+    <div class="col-9 text-center">
+        <h3 class="card-title">Добавление нового продукта</h3>
+        <br />
+        <form method="post" enctype="multipart/form-data">
+            <div class="validation" asp-validation-summary="ModelOnly"></div>
+            <input asp-for="Name" type="text" class="form-control" placeholder="Название" />
+            <span class="alert-danger" asp-validation-for="Name"></span><br />
+            <input asp-for="Price" type="text" class="form-control" placeholder="Цена" />
+            <span class="alert-danger" asp-validation-for="Price"></span><br />
+            <input asp-for="TotalQuantity" type="text" class="form-control" placeholder="Общее количество на складе" />
+            <span class="alert-danger" asp-validation-for="TotalQuantity"></span><br />
+            <textarea asp-for="Description" class="form-control" placeholder="Описание"></textarea>
+            <span class="alert-danger" asp-validation-for="Description"></span>
+            <div class="form-group">
+                <input type="file" class="form-control-file" name="UploadedFile" />
+            </div>
+            <button asp-area="Admin" asp-controller="Product" asp-action="Add" class="btn btn-outline-success my-sm-5" type="submit">Сохранить</button>
+        </form>
+    </div>
+</div>

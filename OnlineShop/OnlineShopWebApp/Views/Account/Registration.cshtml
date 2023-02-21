@@ -1,0 +1,20 @@
+﻿@using OnlineShopWebApp.ViewModels
+@model RegisterViewModel
+
+<div class="row justify-content-center">
+    <div class="col-sm-6">
+        <h3 class="page-title my-sm-4 text-center">Регистрация</h3>
+        <form class="text-sm-center" method="post">
+            <input type="hidden" asp-for="ReturnUrl" value="@Model.ReturnUrl"/>
+            <div class="validation my-sm-4" asp-validation-summary="ModelOnly"></div>
+            <input asp-for="Email" type="email" class="form-control my-sm-4" placeholder="e-mail">
+            <span class="alert-danger" asp-validation-for="Email"></span>
+            <input asp-for="Password" type="password" class="form-control my-sm-4" placeholder="Пароль">
+            <span class="alert-danger" asp-validation-for="Password"></span>
+            <input asp-for="PasswordConfirm" type="password" class="form-control my-sm-4" placeholder="Повторите пароль">
+            <span class="alert-danger" asp-validation-for="PasswordConfirm"></span>
+            <button type="submit" class="btn btn-outline-success">Зарегистрироваться</button>
+        </form>
+    </div>
+</div>
+

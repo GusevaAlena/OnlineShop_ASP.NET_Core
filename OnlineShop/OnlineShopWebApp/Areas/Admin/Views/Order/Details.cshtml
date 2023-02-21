@@ -1,0 +1,60 @@
+﻿@using OnlineShopWebApp.Helpers
+@using OnlineShopWebApp.ViewModels
+@model OrderViewModel
+<div class="row">
+    <div class="col-3 my-sm-5">
+        @await Html.PartialAsync("SidebarMenu")
+    </div>
+    <div class="col-9 my-sm-5">
+        <form method="post">
+            <div class="card">
+                <div class="card-header"><h3 class="card-title">Заказ @Model.Id</h3></div>
+                <div class="card-body">
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr>
+                                <td>Дата и время оформления</td>
+                                <td>
+                                    @Model.CreationDateTime.ToString("d") в
+                                    @Model.CreationDateTime.ToString("t")
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Адрес доставки</td>
+                                <td>
+                                    г. @Model.Address.City, ул. @Model.Address.Street,
+                                    дом @Model.Address.HouseNumber, парадная @Model.Address.EntranceNumber,
+                                    этаж @Model.Address.Floor, кв. @Model.Address.FlatNumber
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Получатель</td>
+                                <td>@Model.Cart.User.Surname @Model.Cart.User.Name</td>
+                            </tr>
+                            <tr>
+                                <td>Телефон</td>
+                                <td>@Model.Cart.User.PhoneNumber</td>
+                            </tr>
+                            <tr>
+                                <td>E-mail</td>
+                                <td>@Model.Cart.User.Email</td>
+                            </tr>
+                            <tr>
+                                <td>Сумма заказа</td>
+                                <td>@Model.Cart.TotalPrice</td>
+                            </tr>
+                            <tr>
+                                <td>Статус</td>
+                                <td>
+                                    <select class="form-control" asp-for="Status.Id" asp-items="Model.StatusSelectList">
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button class="btn btn-outline-info" type="submit" asp-area="Admin" asp-controller="Order" asp-action="UpdateStatus" asp-route-orderId="@Model.Id">Обновить статус</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

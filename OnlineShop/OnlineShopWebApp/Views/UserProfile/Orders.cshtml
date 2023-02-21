@@ -1,0 +1,57 @@
+﻿@using OnlineShopWebApp.ViewModels
+@model UserProfileViewModel
+@foreach (var order in Model.Orders)
+{
+    <div class="card">
+        <div class="card-header"><h3 class="card-title">Заказ @order.Id</h3></div>
+        <div class="card-body">
+            <table class="table table-borderless">
+                <tbody>
+                    <tr>
+                        <td>Дата и время оформления:</td>
+                        <td>
+                            @order.CreationDateTime.ToString("d") в
+                            @order.CreationDateTime.ToString("t")
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Позиции:</td>
+                        <td>
+                            @foreach (var position in @order.Cart.CartPositions)
+                            {
+                                <table>
+                                    <tr>
+                                        <td>@position.Product.Name</td>
+                                        <td>@position.Product.Price &#8381;</td>
+                                    </tr>
+                                </table>
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Адрес доставки:</td>
+                        <td>
+                            г. @order.Address.City, ул. @order.Address.Street,
+                            дом @order.Address.HouseNumber, парадная @order.Address.EntranceNumber,
+                            этаж @order.Address.Floor, кв. @order.Address.FlatNumber
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Сумма заказа:</td>
+                        <td>@order.Cart.CartPositions.Select(x=>x.Product.Price).Sum()</td>
+                    </tr>
+                    <tr>
+                        <td>Выбранный способ оплаты:</td>
+                        <td>@order.Payment.Method</td>
+                    </tr>
+                    <tr>
+                        <td>Статус:</td>
+                        <td>
+                            @order.Status.Name
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+}

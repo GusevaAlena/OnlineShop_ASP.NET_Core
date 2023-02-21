@@ -1,0 +1,37 @@
+﻿@using OnlineShop.Db.Models
+@model List<Product>
+@{
+    ViewData["Title"] = "Главная страница";
+}
+<div class="row">
+    <div class="col-sm-12">
+        @await Html.PartialAsync("SearchString")<br />
+    </div>
+</div>
+<div class="row">
+    @foreach (var product in Model)
+    {
+        <div class="col-sm-4 mb-4">
+            <div class="card box-shadow h-100">
+                <div class="text-right my-3 mx-3">
+                    <a asp-controller="Product" asp-action="CompareAdd" asp-route-id="@product.Id" class="btn btn-outline-info"><i class="bi bi-arrow-left-right"></i></a>
+                    <a asp-controller="Product" asp-action="FavoriteAdd" asp-route-id="@product.Id" class="btn btn-outline-danger"><i class="bi bi-heart"></i></a>
+                </div>
+                <div class="card-body">
+                    <img src="@product.ImagePath" class="card-img my-sm-2" alt="productImage" />                    
+                </div>
+                <div class="card-footer bg-transparent border-0 text-center">
+                    <h5 class="card-title text-truncate text-center">@product.Name</h5>
+                    <h5 class="text-center product-price my-sm-3">@Math.Truncate(product.Price) &#8381;</h5>
+                    <div class="btn-group my-sm-3">
+                        <a asp-controller="Cart" asp-action="AddProduct" asp-route-productId="@product.Id" class="btn btn-outline-success me-md-2" type="button"><i class="bi bi-cart-plus"></i></a>
+                        <a asp-area="" asp-controller="Product" asp-action="Index" asp-route-id="@product.Id" class="btn btn-outline-info me-md-2" type="button">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+

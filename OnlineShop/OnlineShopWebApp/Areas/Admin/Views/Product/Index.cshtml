@@ -1,0 +1,40 @@
+﻿@model List<ProductViewModel>
+<div class="row">
+    <div class="col-3 my-sm-5">
+        @await Html.PartialAsync("SidebarMenu")
+    </div>
+    <div class="col-sm-9 text-center">
+        <h3 class="card-title">Список продуктов</h3>
+        <table class="table table-info table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Изображение товара</th>
+                    <th scope="col">Название</th>
+                    <th scope="col">Цена</th>
+                    <th scope="col">Общее количество на складе</th>
+                    <th scope="col">Описание</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var product in Model)
+                {
+                    <tr>
+                        <td><img src="@product.ImagePath" height="100" /></td>
+                        <td><a asp-area="" asp-controller="Product" asp-action="Index" asp-route-id="@product.Id">@product.Name</a></td>
+                        <td>@product.Price</td>
+                        <td>@product.TotalQuantity</td>
+                        <td>@product.Description</td>
+                        <td>
+                            <div class="btn-group">
+                                <a asp-area="Admin" asp-controller="Product" asp-action="Edit" asp-route-id="@product.Id" class="btn btn-outline-info"><i class="bi bi-pencil"></i></a>
+                                @await Html.PartialAsync("DeleteConfirm",product)
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <a class="btn btn-outline-info my-sm-4" asp-area="Admin" asp-controller="Product" asp-action="Add"><i class="bi bi-plus">Добавить новый продукт</i></a>
+    </div>
+</div>

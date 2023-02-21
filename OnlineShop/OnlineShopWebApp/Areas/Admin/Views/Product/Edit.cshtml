@@ -1,0 +1,27 @@
+﻿@model ProductViewModel
+<div class="row">
+    <div class="col-3 my-sm-5">
+        @await Html.PartialAsync("SidebarMenu")
+    </div>
+    <div class="col-9 text-center">
+        <h3 class="card-title my-sm-4">Редактирование продукта</h3>
+        <form method="post" enctype="multipart/form-data">
+            <div class="validation" asp-validation-summary="ModelOnly"></div>
+            <input asp-for="Name" type="text" class="form-control" value="@Model.Name" />
+            <span class="alert-danger" asp-validation-for="Name"></span><br />
+            <input id="price" asp-for="Price" type="text" class="form-control" value="@Math.Truncate(Model.Price)" />
+            <span class="alert-danger" asp-validation-for="Price"></span><br />
+            <input asp-for="TotalQuantity" type="text" class="form-control" value="@Model.TotalQuantity" />
+            <span class="alert-danger" asp-validation-for="TotalQuantity"></span><br />
+            <textarea asp-for="Description" class="form-control" value="@Model.Description"></textarea>
+            <span class="alert-danger" asp-validation-for="Description"></span>
+            <div class="form-group my-sm-3 text-sm-left">
+                <img src="@Model.ImagePath" height="100"/>
+                <input type="file" class="form-control-file my-sm-3" name="UploadedFile" />
+            </div>
+            <button asp-area="Admin" asp-controller="Product" asp-action="Edit" class="btn btn-outline-success my-sm-5" type="submit">Сохранить</button>
+        </form>
+    </div>
+</div>
+
+

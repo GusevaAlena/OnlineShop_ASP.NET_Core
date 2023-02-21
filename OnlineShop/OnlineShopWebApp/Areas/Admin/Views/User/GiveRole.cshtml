@@ -1,0 +1,39 @@
+﻿@using OnlineShopWebApp.ViewModels
+@model GiveRoleViewModel
+
+<div class="row">
+    <div class="col-3 my-sm-5">
+        @await Html.PartialAsync("SidebarMenu")
+    </div>
+    <div class="col-sm-9 text-center">
+        <h3 class="card-title">Смена прав доступа для пользователя @Model.UserName</h3>
+        <div class="row my-sm-2 mx-sm-5 text-sm-left">
+            <form method="post">
+                <legend>Текущие роли</legend>
+                <input type="hidden" asp-for="UserName" value="@Model.UserName" />
+                @foreach (var role in Model.AllRoles)
+                {
+                    if (Model.UserRoles.Contains(role))
+                    {
+                        <div class="form-check my-sm-4">
+                            <input class="form-check-input" name="selectedRoles" type="checkbox" value="@role.Name" id="flexCheckChecked" checked>
+                            <label class="form-check-label" for="flexCheckChecked">
+                                @role.Name
+                            </label>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="form-check my-sm-4">
+                            <input class="form-check-input" name="selectedRoles" type="checkbox" value="@role.Name" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                @role.Name
+                            </label>
+                        </div>
+                    }
+                }
+                <button asp-area="Admin" asp-controller="User" asp-action="GiveRole" class="btn btn-outline-success my-sm-5" type="submit">Сохранить</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,7 @@
+﻿@model string
+@if (Model==null){
+    <img src="~/images/users/default.jpg" alt="defaultProfilePic" class="profile-img rounded-circle" style="width:40px"/>
+}
+else{
+    <img src="@Model" alt="profilePic" class="profile-img rounded-circle" style="width:40px"/>
+}

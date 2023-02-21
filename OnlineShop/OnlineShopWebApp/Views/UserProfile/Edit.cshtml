@@ -1,0 +1,21 @@
+﻿@using OnlineShopWebApp.ViewModels
+@model UserProfileViewModel
+<div class="row d-flex justify-content-center">
+    <div class="col-6 text-center">
+        <h3 class="card-title my-sm-5">Редактирование информации о себе</h3>
+        <form method="post" enctype="multipart/form-data">
+            <div class="validation" asp-validation-summary="ModelOnly"></div>
+            <input asp-for="Name" type="text" class="form-control" placeholder="Имя" />
+            <span class="alert-danger" asp-validation-for="Name"></span><br />
+            <input asp-for="Surname" type="text" class="form-control" placeholder="Фамилия" />
+            <span class="alert-danger" asp-validation-for="Surname"></span><br />
+            <input asp-for="PhoneNumber" type="tel" class="form-control" placeholder="Телефон" />
+            <span class="alert-danger" asp-validation-for="PhoneNumber"></span><br />
+            <div class="form-group my-sm-3 text-sm-left">
+                <img src="@Model.ProfileImagePath" height="100" />
+                <input type="file" class="form-control-file my-sm-3" name="UploadedFile" />
+            </div>
+            <button asp-area="" asp-controller="UserProfile" asp-action="Edit" class="btn btn-outline-success my-sm-5" type="submit">Сохранить</button>
+        </form>
+    </div>
+</div>

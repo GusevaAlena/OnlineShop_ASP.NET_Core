@@ -1,0 +1,44 @@
+﻿@model List<ProductViewModel>
+<h3 class="page-title my-sm-4">Сравнение товаров</h3>
+<div class="row"> 
+    @foreach (var product in Model)
+    {
+        <div class="col-sm-4">
+            <div class="card-body">
+                <div class="row">
+                    <h5 class="card-title">Название</h5>
+                </div>
+                <div class="row">
+                    <h6>@product.Name</h6>
+                </div>
+                <div class="row">
+                    <h5 class="card-title">Цена</h5>
+                </div>
+                <div class="row">
+                    <h6 class="card-price">@product.Price &#8381;</h6>
+                </div>
+                <div class="row">
+                    <h5 class="card-title">Описание</h5>
+                </div>
+                <div class="row">
+                    <h6>@product.Description</h6>
+                </div>
+                <div class="row">
+                    <div class="text-center">
+                        <a asp-controller="Cart" asp-action="AddProduct" asp-route-productId="@product.Id" class="btn btn-outline-success me-md-2" type="button"><i class="bi bi-cart-plus"></i></a>
+                        <a asp-controller="Product" asp-action="FavoriteAdd" asp-route-id="@product.Id"  class="btn btn-outline-danger"><i class="bi bi-heart"></i></a>
+                        <a asp-controller="Product" asp-action="CompareRemove" asp-route-id="@product.Id" class="btn btn-outline-info"><i class="bi bi-dash"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<div class="row my-sm-5">
+    <div class="col">
+        <div class="text-center">
+            <a class="btn btn-outline-info" asp-controller="Home" asp-action="Index">Вернуться в каталог товаров</a>
+        </div>
+    </div>
+</div>
+

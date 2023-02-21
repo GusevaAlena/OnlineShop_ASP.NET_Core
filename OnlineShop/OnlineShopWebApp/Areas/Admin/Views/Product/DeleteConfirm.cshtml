@@ -1,0 +1,25 @@
+﻿@model ProductViewModel
+@{
+    string deleteConfirmModal = $"deleteConfirmModal{Model.Id}";
+}
+
+<a data-toggle="modal" href="#@deleteConfirmModal" class="btn btn-outline-danger">
+    <i class="bi bi-trash3"></i>
+</a>
+
+<div class="modal" id="@deleteConfirmModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Подтвердите удаление</h5>
+            </div>
+            <div class="modal-body">
+                <p>Вы действительно хотите удалить @Model.Name из списка продуктов?</p>
+            </div>
+            <div class="modal-footer">
+                <a asp-area="Admin" asp-controller="Product" asp-action="Remove" asp-route-id="@Model.Id" type="button" class="btn btn-outline-success">Да</a>
+                <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Нет</button>
+            </div>
+        </div>
+    </div>
+</div>

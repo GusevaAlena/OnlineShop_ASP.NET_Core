@@ -1,0 +1,65 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
+
+legend, .card-title, .page-title {
+    font-family: 'Balsamiq Sans';
+    color: cadetblue;
+}
+
+.page-title {
+    font-weight: bolder;
+    font-size: 32px;
+}
+
+.product-price, .total-price {
+    color: steelblue;
+}
+
+.card-text {
+    color: cadetblue;
+}
+
+.total-price {
+    font-weight: bolder;
+    font-size: larger;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    font-size: 26px;
+}
+
+.navbar .shop-title {
+    font-family: 'Balsamiq Sans';
+    font-size: 36px;
+}
+
+.navbar .shop-title:hover {
+        color: powderblue;
+}
+
+.footer-info-header {
+    font-size: 20px;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    flex: 1 0 auto;
+}
+
+.footer {
+    flex: 0 0 auto;
+}
+
+.unsuccessful-message {
+    font-size: 20px;
+}
